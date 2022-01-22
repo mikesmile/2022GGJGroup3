@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private Animator itemAnimator;
     public enum ControlType
     {
         controlA,
         controlB,
+    }
+
+    public enum Weapon
+    {
+        none,
+        Sword,
+        Shield,
     }
 
     public ControlType playerControlType = ControlType.controlA;
@@ -20,8 +29,9 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     private bool isFacingRight = true;
-
     private bool isGround = false;
+    private bool isCanMove = true;
+
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
@@ -30,8 +40,8 @@ public class PlayerController : MonoBehaviour
     public int extraJumpsValue;
 
     public AudioMgr Jump;
+    private Weapon usedWeapon = Weapon.none;
 
- 
 
     void Awake()
     {
@@ -57,15 +67,33 @@ public class PlayerController : MonoBehaviour
 
         if (playerControlType == ControlType.controlA)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
+            //for jump
+            if (isCanMove)
             {
-                rb.velocity = Vector2.up * jumpForce;
-                extraJumps--;
+                if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
+                {
+                    rb.velocity = Vector2.up * jumpForce;
+                    extraJumps--;
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGround == true)
+                {
+                    rb.velocity = Vector2.up * jumpForce;
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGround == true)
+
+            //shield
+            if (Input.GetKeyDown(KeyCode.N) && usedWeapon == Weapon.Shield)
             {
-                rb.velocity = Vector2.up * jumpForce;
+                itemAnimator.SetBool("guard", true);
+                isCanMove = false;
             }
+            else if (Input.GetKeyUp(KeyCode.N) && usedWeapon == Weapon.Shield)
+            {
+                itemAnimator.SetBool("guard", false);
+                isCanMove = true;
+            }
+
+            //sword
         }
         else if (playerControlType == ControlType.controlB)
         {
@@ -85,26 +113,35 @@ public class PlayerController : MonoBehaviour
     {
         isGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
-        if (playerControlType == ControlType.controlA)
+        if (isCanMove)
         {
-            moveInput = Input.GetAxis("Horizontal");
+            if (playerControlType == ControlType.controlA)
+            {
+                moveInput = Input.GetAxis("Horizontal");
 
-        }
-        else if (playerControlType == ControlType.controlB)
-        {
-            moveInput = Input.GetAxis("Horizontal2");
-        }
+            }
+            else if (playerControlType == ControlType.controlB)
+            {
+                moveInput = Input.GetAxis("Horizontal2");
+            }
 
-        animator.SetFloat("speed", Mathf.Abs(moveInput));
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+            animator.SetFloat("speed", Mathf.Abs(moveInput));
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
-        if ( isFacingRight == false && moveInput > 0)
-        {
-            Flip();
+            if (isFacingRight == false && moveInput > 0)
+            {
+                Flip();
+            }
+            else if (isFacingRight == true && moveInput < 0)
+            {
+                Flip();
+            }
         }
-        else if (isFacingRight == true && moveInput < 0)
+        else if (!isCanMove)
         {
-            Flip();
+            animator.SetFloat("speed", 0);
+            moveInput = 0;
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
         }
     }
 
@@ -117,5 +154,25 @@ public class PlayerController : MonoBehaviour
         scaler.x *= -1;
 
         transform.localScale = scaler;
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (usedWeapon != Weapon.none) return;
+
+        if (collision.tag.Equals("Sword"))
+        {
+            Destroy(collision.transform.gameObject);
+
+            usedWeapon = Weapon.Sword;
+            itemAnimator.SetBool("getSword", true);
+        }
+        else if (collision.tag.Equals("Shield"))
+        {
+            Destroy(collision.transform.gameObject);
+
+            usedWeapon = Weapon.Shield;
+            itemAnimator.SetBool("getShield", true);
+        }
     }
 }
