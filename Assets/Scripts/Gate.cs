@@ -9,6 +9,8 @@ public class Gate : MonoBehaviour
     public GameObject Player2;
 
     private bool isReadyToChangeScene = false;
+
+    private int countingPeople = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,17 +20,31 @@ public class Gate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    
-    void OnTriggerStay2D(Collider2D collider)
-    {
-        if (!isReadyToChangeScene && collider.name.Contains("Player") && collider.name.Contains("Player2"))
+        if (!isReadyToChangeScene && countingPeople.Equals(2))
         {
-            Debug.Log(collider);
             isReadyToChangeScene = true;
             TransitionManager.Self.LoadScene("Stage2");
         }
     }
+    
+    void OnTriggerStay2D(Collider2D collider)
+    {
+    
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.name.Equals("Player") || collision.name.Equals("Player2"))
+        {
+            countingPeople++;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.name.Equals("Player") || collision.name.Equals("Player2"))
+        {
+            countingPeople--;
+        }
+    }
 }

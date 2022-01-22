@@ -30,7 +30,9 @@ public class PlayerController : MonoBehaviour
 
     private bool isFacingRight = true;
     private bool isGround = false;
-    private bool isCanMove = true;
+
+    [HideInInspector]
+    public bool isCanMove = true;
 
     public Transform groundCheck;
     public float checkRadius;
@@ -40,7 +42,15 @@ public class PlayerController : MonoBehaviour
     public int extraJumpsValue;
 
     public AudioMgr Jump;
+
     private Weapon usedWeapon = Weapon.none;
+
+    public Weapon UsedWeapon
+    {
+        get => usedWeapon;
+
+        set => usedWeapon = value;
+    }
 
 
     void Awake()
@@ -65,9 +75,15 @@ public class PlayerController : MonoBehaviour
             extraJumps = extraJumpsValue;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            itemAnimator.SetTrigger("ResetToIdle");
+        }
+
         //一般操控
         if (playerControlType == ControlType.controlA)
         {
+
             //for jump
             if (isCanMove)
             {
