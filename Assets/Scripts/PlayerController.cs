@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            //shield
+            #region 拿到盾
             if (Input.GetKeyDown(KeyCode.N) && usedWeapon == Weapon.Shield)
             {
                 itemAnimator.SetBool("guard", true);
@@ -92,8 +92,19 @@ public class PlayerController : MonoBehaviour
                 itemAnimator.SetBool("guard", false);
                 isCanMove = true;
             }
-
+            else if (Input.GetKeyDown(KeyCode.M) && usedWeapon == Weapon.Shield)
+            {
+                itemAnimator.SetBool("guardHead", true);
+                isCanMove = false;
+            }
+            else if (Input.GetKeyUp(KeyCode.M) && usedWeapon == Weapon.Shield)
+            {
+                itemAnimator.SetBool("guardHead", false);
+                isCanMove = true;
+            }
+            #endregion
             //sword
+
         }
         else if (playerControlType == ControlType.controlB)
         {
