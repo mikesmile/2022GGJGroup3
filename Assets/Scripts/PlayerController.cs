@@ -75,11 +75,6 @@ public class PlayerController : MonoBehaviour
             extraJumps = extraJumpsValue;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            itemAnimator.SetTrigger("ResetToIdle");
-        }
-
         //一般操控
         if (playerControlType == ControlType.controlA)
         {
