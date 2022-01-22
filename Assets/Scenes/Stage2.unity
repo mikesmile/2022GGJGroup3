@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 145588755}
   - component: {fileID: 145588756}
   - component: {fileID: 145588754}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GGj_wood (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 1224127783}
   - component: {fileID: 1224127785}
   - component: {fileID: 1224127784}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GGJ_land
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 1690122891}
   - component: {fileID: 1690122892}
   - component: {fileID: 1690122890}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GGj_wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
