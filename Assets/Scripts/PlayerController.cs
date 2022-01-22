@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
 
     private Rigidbody2D rb;
+    private Animator animator;
 
     private bool isFacingRight = true;
 
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
         extraJumps = extraJumpsValue;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     // Start is called before the first frame update
     void Start()
@@ -88,6 +90,7 @@ public class PlayerController : MonoBehaviour
             moveInput = Input.GetAxis("Horizontal2");
         }
 
+        animator.SetFloat("speed", Mathf.Abs(moveInput));
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
         if ( isFacingRight == false && moveInput > 0)
