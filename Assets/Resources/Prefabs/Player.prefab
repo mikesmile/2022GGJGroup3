@@ -12,7 +12,11 @@ GameObject:
   - component: {fileID: 4551060334457876056}
   - component: {fileID: 1453264377761464063}
   - component: {fileID: 3984210397611301919}
-  m_Layer: 7
+  - component: {fileID: 8206620289084963395}
+  - component: {fileID: 2259189400540113488}
+  - component: {fileID: 3180677310354985164}
+  - component: {fileID: 2399241633413789726}
+  m_Layer: 3
   m_Name: ItemObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,6 +120,87 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 3012683262261682135}
+--- !u!114 &8206620289084963395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865119881464069580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b718e78c2135e6242b76e62d16dd1684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SwordDB: {fileID: 11400000, guid: 1fc7d7df08fba304ba74baeffdb645af, type: 2}
+  ShieldDB: {fileID: 11400000, guid: b8441b3907c1f6f428c28d1c3d47d523, type: 2}
+--- !u!61 &2259189400540113488
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865119881464069580}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.2034147}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.62, y: 0.57}
+    newSize: {x: 0.62, y: 0.57}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.62, y: 2.0006328}
+  m_EdgeRadius: 0
+--- !u!68 &3180677310354985164
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865119881464069580}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.06769015, y: 0.99523956}
+  - {x: 0.26505238, y: -0.9442728}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!251 &2399241633413789726
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865119881464069580}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: -88
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &3012683262261682137
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +371,7 @@ MonoBehaviour:
   playerControlType: 0
   speed: 8
   jumpForce: 8
+  isCanMove: 1
   groundCheck: {fileID: 3012683262722319287}
   checkRadius: 0.5
   whatIsGround:

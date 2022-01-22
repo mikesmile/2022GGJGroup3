@@ -19,10 +19,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown("space"))
-        { 
-        boss.Hurt(20);
-        }
     }
 
     public void RandomWeaponPawn()  //隨機在地圖上產生武器
@@ -44,8 +40,6 @@ public class GameManager : MonoBehaviour
 
             Vector2 newPos = new Vector2(RandomPos, PosY);
             Instantiate(weapon[RandomIndex], newPos, Quaternion.identity);
-            //GameObject newWeapon = Instantiate(weapon[RandomIndex], newPos, Quaternion.identity);
-            //newWeapon.transform.localScale = new Vector3(Scale, Scale, 1f);
             LastRamCamPos = RandomPos;
 
         }
