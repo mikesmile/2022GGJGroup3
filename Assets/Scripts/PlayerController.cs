@@ -82,22 +82,22 @@ public class PlayerController : MonoBehaviour
             }
 
             #region 拿到盾
-            if (Input.GetKeyDown(KeyCode.N) && usedWeapon == Weapon.Shield)
+            if ( !guardFreeze() && Input.GetKeyDown(KeyCode.N) && usedWeapon == Weapon.Shield)
             {
                 itemAnimator.SetBool("guard", true);
                 isCanMove = false;
             }
-            else if (Input.GetKeyUp(KeyCode.N) && usedWeapon == Weapon.Shield)
+            else if ( itemAnimator.GetBool("guard") && Input.GetKeyUp(KeyCode.N) && usedWeapon == Weapon.Shield)
             {
                 itemAnimator.SetBool("guard", false);
                 isCanMove = true;
             }
-            else if (Input.GetKeyDown(KeyCode.M) && usedWeapon == Weapon.Shield)
+            else if ( !guardFreeze() && Input.GetKeyDown(KeyCode.M) && usedWeapon == Weapon.Shield)
             {
                 itemAnimator.SetBool("guardHead", true);
                 isCanMove = false;
             }
-            else if (Input.GetKeyUp(KeyCode.M) && usedWeapon == Weapon.Shield)
+            else if ( itemAnimator.GetBool("guardHead") && Input.GetKeyUp(KeyCode.M) && usedWeapon == Weapon.Shield)
             {
                 itemAnimator.SetBool("guardHead", false);
                 isCanMove = true;
@@ -118,6 +118,15 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = Vector2.up * jumpForce; 
             }
         }
+    }
+
+    public bool guardFreeze()
+    {
+        if (itemAnimator.GetBool("guard") || itemAnimator.GetBool("guardHead"))
+            return true;
+        else
+            return false;
+
     }
 
     void FixedUpdate()
