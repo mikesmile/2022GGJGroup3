@@ -14,7 +14,7 @@ public class TransitionManager : SingletonBase<TransitionManager>
     public const string UIPath = "Prefabs/";
 
     public CanvasGroup group;
-    private float transitionDuration = 1f; //轉換場景持續時間
+    private float transitionDuration = 0.5f; //轉換場景持續時間
 
     public Action OutFadeDone;//前alpha結束後
     public Action InFadeDone;//後alpha結束後
@@ -62,7 +62,7 @@ public class TransitionManager : SingletonBase<TransitionManager>
 
     public void OutFade(Action onComplete)
     {
-        group.DOFade(0.5f, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() => {
+        group.DOFade(1f, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() => {
 
             if (OutFadeDone != null) OutFadeDone();
             if (onComplete != null) onComplete();
@@ -73,7 +73,7 @@ public class TransitionManager : SingletonBase<TransitionManager>
 
     public void InFade(Action onComplete)
     {
-        group.DOFade(0.5f, transitionDuration).SetEase(Ease.InQuad).OnComplete(() => {
+        group.DOFade(0f, transitionDuration).SetEase(Ease.InQuad).OnComplete(() => {
 
             if (InFadeDone != null) InFadeDone();
             if (onComplete != null) onComplete();

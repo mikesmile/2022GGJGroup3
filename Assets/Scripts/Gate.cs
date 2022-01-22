@@ -7,6 +7,8 @@ public class Gate : MonoBehaviour
 {
     public GameObject Player1;
     public GameObject Player2;
+
+    private bool isReadyToChangeScene = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,9 @@ public class Gate : MonoBehaviour
     void OnTriggerStay2D(Collider2D collider)
     {
 
-        if (collider.name.Contains("Player") && collider.name.Contains("Player2"))
+        if (!isReadyToChangeScene && collider.name.Contains("Player") && collider.name.Contains("Player2"))
         {
+            isReadyToChangeScene = true;
             TransitionManager.Self.LoadScene("Stage2");
         }
     }
