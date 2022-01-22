@@ -11,9 +11,9 @@ public class FirstInit : MonoBehaviour
     void Awake()
     {
         DOTween.Init();
-        GameObject config = Instantiate(Resources.Load<GameObject>("Prefabs/TransitionManager"));
+        GameObject transition = Instantiate(Resources.Load<GameObject>("Prefabs/TransitionCanvas"));
         //Self = config.GetComponent<Config>();
-        DontDestroyOnLoad(config);
+        DontDestroyOnLoad(transition);
     }
     // Start is called before the first frame update
     void Start()

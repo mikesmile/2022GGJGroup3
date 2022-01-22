@@ -22,7 +22,6 @@ public class TransitionManager : SingletonBase<TransitionManager>
     protected override void Awake()
     {
         base.Awake();
-
         //SceneManager.activeSceneChanged += ChangedActiveScene;
         //SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -63,7 +62,7 @@ public class TransitionManager : SingletonBase<TransitionManager>
 
     public void OutFade(Action onComplete)
     {
-        group.DOFade(1f, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() => {
+        group.DOFade(0.5f, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() => {
 
             if (OutFadeDone != null) OutFadeDone();
             if (onComplete != null) onComplete();
@@ -74,7 +73,7 @@ public class TransitionManager : SingletonBase<TransitionManager>
 
     public void InFade(Action onComplete)
     {
-        group.DOFade(0f, transitionDuration).SetEase(Ease.InQuad).OnComplete(() => {
+        group.DOFade(0.5f, transitionDuration).SetEase(Ease.InQuad).OnComplete(() => {
 
             if (InFadeDone != null) InFadeDone();
             if (onComplete != null) onComplete();
