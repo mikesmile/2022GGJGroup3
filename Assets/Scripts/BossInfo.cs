@@ -15,7 +15,7 @@ public class BossInfo : MonoBehaviour
     {
         BossHp -= Dmg;
         BossHealthBar.Curhp = BossHp;
-        if (BossHp < 0)
+        if (BossHp <= 0)
         {
             Debug.Log("Win");
         }

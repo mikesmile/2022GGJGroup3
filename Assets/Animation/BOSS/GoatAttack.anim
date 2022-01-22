@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lion
+  m_Name: GoatAttack
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 226d1e886ea5fe44586b602944104651, type: 3}
-    - time: 0.33333334
-      value: {fileID: 21300000, guid: b492726d375ac634b95e8a2d05378903, type: 3}
-    - time: 0.6666667
-      value: {fileID: 21300000, guid: 6ec42870f8e45da40b6956f91c34fda0, type: 3}
-    - time: 1
-      value: {fileID: 21300000, guid: c496c3c4286675b4099cef0e4049ec20, type: 3}
+      value: {fileID: 21300000, guid: f750c0f2f60f33a48b175fffc6238186, type: 3}
+    - time: 0.41666666
+      value: {fileID: 21300000, guid: 7fce164e7146da440a771638840695e7, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: f750c0f2f60f33a48b175fffc6238186, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,16 +44,15 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 226d1e886ea5fe44586b602944104651, type: 3}
-    - {fileID: 21300000, guid: b492726d375ac634b95e8a2d05378903, type: 3}
-    - {fileID: 21300000, guid: 6ec42870f8e45da40b6956f91c34fda0, type: 3}
-    - {fileID: 21300000, guid: c496c3c4286675b4099cef0e4049ec20, type: 3}
+    - {fileID: 21300000, guid: f750c0f2f60f33a48b175fffc6238186, type: 3}
+    - {fileID: 21300000, guid: 7fce164e7146da440a771638840695e7, type: 3}
+    - {fileID: 21300000, guid: f750c0f2f60f33a48b175fffc6238186, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0833334
+    m_StopTime: 0.8333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
