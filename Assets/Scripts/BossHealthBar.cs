@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class BossHealthBar : MonoBehaviour
 {
     public static int Maxhp;
     public static int Curhp;
     private Image healthbar;
     // Update is called once per frame
 
-    private void Start()
+    void Start()
     {
         healthbar = GetComponent<Image>();
-        //Curhp = Maxhp;
+        Debug.Log("Hi");
+        Debug.Log(Curhp);
     }
     void Update()
     {
