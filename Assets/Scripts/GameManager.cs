@@ -8,11 +8,21 @@ public class GameManager : MonoBehaviour
     Camera cam;
     public float weaponwidth = 1.5f;
     public float PosY = -4f;
-
+    //internal static object instance;
+    private BossInfo boss;
     private void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         RandomWeaponPawn();
+        boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossInfo>();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown("space"))
+        { 
+        boss.Hurt(20);
+        }
     }
 
     public void RandomWeaponPawn()  //隨機在地圖上產生武器

@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
     private int extraJumps;
     public int extraJumpsValue;
 
+    public AudioMgr Jump;
+
+ 
+
     void Awake()
     {
 
@@ -45,6 +49,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (isGround)
         {
             extraJumps = extraJumpsValue;
@@ -67,11 +72,11 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.W) && extraJumps > 0)
             {
                 rb.velocity = Vector2.up * jumpForce;
-                extraJumps--;
+                extraJumps--; 
             }
             else if (Input.GetKeyDown(KeyCode.W) && extraJumps == 0 && isGround == true)
             {
-                rb.velocity = Vector2.up * jumpForce;
+                rb.velocity = Vector2.up * jumpForce; 
             }
         }
     }

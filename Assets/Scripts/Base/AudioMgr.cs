@@ -8,7 +8,7 @@ public class AudioMgr : MonoBehaviour
     public AudioClip JumpClip;
     public AudioClip Attack;
 
-    public void Play()
+    public void Jump()
     {
         audioSource.PlayOneShot(JumpClip);
         audioSource.PlayOneShot(Attack);

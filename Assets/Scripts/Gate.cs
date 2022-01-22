@@ -23,9 +23,9 @@ public class Gate : MonoBehaviour
     
     void OnTriggerStay2D(Collider2D collider)
     {
-
         if (!isReadyToChangeScene && collider.name.Contains("Player") && collider.name.Contains("Player2"))
         {
+            Debug.Log(collider);
             isReadyToChangeScene = true;
             TransitionManager.Self.LoadScene("Stage2");
         }
