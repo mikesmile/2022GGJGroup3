@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
             extraJumps = extraJumpsValue;
         }
 
+        //一般操控
         if (playerControlType == ControlType.controlA)
         {
             //for jump
@@ -82,41 +83,104 @@ public class PlayerController : MonoBehaviour
             }
 
             #region 拿到盾
-            if ( !guardFreeze() && Input.GetKeyDown(KeyCode.N) && usedWeapon == Weapon.Shield)
+            if (usedWeapon == Weapon.Shield)
             {
-                itemAnimator.SetBool("guard", true);
-                isCanMove = false;
-            }
-            else if ( itemAnimator.GetBool("guard") && Input.GetKeyUp(KeyCode.N) && usedWeapon == Weapon.Shield)
-            {
-                itemAnimator.SetBool("guard", false);
-                isCanMove = true;
-            }
-            else if ( !guardFreeze() && Input.GetKeyDown(KeyCode.M) && usedWeapon == Weapon.Shield)
-            {
-                itemAnimator.SetBool("guardHead", true);
-                isCanMove = false;
-            }
-            else if ( itemAnimator.GetBool("guardHead") && Input.GetKeyUp(KeyCode.M) && usedWeapon == Weapon.Shield)
-            {
-                itemAnimator.SetBool("guardHead", false);
-                isCanMove = true;
+                if (!guardFreeze() && Input.GetKeyDown(KeyCode.Keypad2))
+                {
+                    itemAnimator.SetBool("guard", true);
+                    isCanMove = false;
+                }
+                else if (itemAnimator.GetBool("guard") && Input.GetKeyUp(KeyCode.Keypad2))
+                {
+                    itemAnimator.SetBool("guard", false);
+                    isCanMove = true;
+                }
+                else if (!guardFreeze() && Input.GetKeyDown(KeyCode.Keypad3))
+                {
+                    itemAnimator.SetBool("guardHead", true);
+                    isCanMove = false;
+                }
+                else if (itemAnimator.GetBool("guardHead") && Input.GetKeyUp(KeyCode.Keypad3))
+                {
+                    itemAnimator.SetBool("guardHead", false);
+                    isCanMove = true;
+                }
             }
             #endregion
-            //sword
+
+
+
+            #region 拿到劍
+            if (usedWeapon == Weapon.Sword)
+            {
+                if (Input.GetKeyDown(KeyCode.Keypad2))
+                {
+                    itemAnimator.SetBool("attack", true);
+                }
+                else if (itemAnimator.GetBool("attack") && Input.GetKeyUp(KeyCode.Keypad2))
+                {
+                    itemAnimator.SetBool("attack", false);
+                }
+            }
+            #endregion
 
         }
-        else if (playerControlType == ControlType.controlB)
+        else if (playerControlType == ControlType.controlB) //第二個操控
         {
-            if (Input.GetKeyDown(KeyCode.W) && extraJumps > 0)
+            if (isCanMove)
             {
-                rb.velocity = Vector2.up * jumpForce;
-                extraJumps--; 
+                if (Input.GetKeyDown(KeyCode.W) && extraJumps > 0)
+                {
+                    rb.velocity = Vector2.up * jumpForce;
+                    extraJumps--;
+                }
+                else if (Input.GetKeyDown(KeyCode.W) && extraJumps == 0 && isGround == true)
+                {
+                    rb.velocity = Vector2.up * jumpForce;
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.W) && extraJumps == 0 && isGround == true)
+
+            #region 拿到盾
+            if (usedWeapon == Weapon.Shield)
             {
-                rb.velocity = Vector2.up * jumpForce; 
+                if (!guardFreeze() && Input.GetKeyDown(KeyCode.V))
+                {
+                    itemAnimator.SetBool("guard", true);
+                    isCanMove = false;
+                }
+                else if (itemAnimator.GetBool("guard") && Input.GetKeyUp(KeyCode.V))
+                {
+                    itemAnimator.SetBool("guard", false);
+                    isCanMove = true;
+                }
+                else if (!guardFreeze() && Input.GetKeyDown(KeyCode.B))
+                {
+                    itemAnimator.SetBool("guardHead", true);
+                    isCanMove = false;
+                }
+                else if (itemAnimator.GetBool("guardHead") && Input.GetKeyUp(KeyCode.B))
+                {
+                    itemAnimator.SetBool("guardHead", false);
+                    isCanMove = true;
+                }
             }
+            #endregion
+
+
+
+            #region 拿到劍
+            if (usedWeapon == Weapon.Sword)
+            {
+                if (Input.GetKeyDown(KeyCode.V))
+                {
+                    itemAnimator.SetBool("attack", true);
+                }
+                else if (itemAnimator.GetBool("attack") && Input.GetKeyUp(KeyCode.V))
+                {
+                    itemAnimator.SetBool("attack", false);
+                }
+            }
+            #endregion
         }
     }
 
