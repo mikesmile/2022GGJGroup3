@@ -5,25 +5,24 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject[] weapon;
+    public PlayerController player1;
+    public PlayerController player2;
     Camera cam;
     public float weaponwidth = 1.5f;
     public float PosY = -4f;
     //internal static object instance;
-    private BossInfo boss;
-    public PlayerController player1;
+    public List<GameObject> CurWeapon = new List<GameObject>();
     private void Start()
     {
+       
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         RandomWeaponPawn();
-        boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossInfo>();
+        InvokeRepeating("getCount", 1f, 1f);
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown("space"))
-        {
-            player1.Dead();
-        }
+
     }
 
     public void RandomWeaponPawn()  //隨機在地圖上產生武器
@@ -31,6 +30,7 @@ public class GameManager : MonoBehaviour
         float halfHeight = cam.orthographicSize;
         float halfWidth = cam.aspect * halfHeight;
         float LastRamCamPos = 0f;
+        int LastRanIndex = 0;
 
         for (int i = 0; i < weapon.Length; i++)
         {
@@ -43,10 +43,29 @@ public class GameManager : MonoBehaviour
             }
             while (Mathf.Abs(RandomPos - LastRamCamPos) < weaponwidth);
 
-            Vector2 newPos = new Vector2(RandomPos, PosY);
-            Instantiate(weapon[RandomIndex], newPos, Quaternion.identity);
-            LastRamCamPos = RandomPos;
+            do
+            {
+                RandomIndex = Random.Range(0, weapon.Length);
+            }
+            while (LastRanIndex == RandomIndex);
 
+            Vector2 newPos = new Vector2(RandomPos, PosY);
+            Instantiate(weapon[RandomIndex], newPos, Quaternion.identity, transform);
+
+            LastRamCamPos = RandomPos;
+            LastRanIndex = RandomIndex;
+        }
+    }
+    public void getCount()
+    {
+        CurWeapon.Clear();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            CurWeapon.Add(transform.GetChild(i).gameObject);
+        }
+        if (CurWeapon.Count == 0)
+        {
+            RandomWeaponPawn();
         }
     }
 }
