@@ -24,11 +24,12 @@ public class WeaponAnimFunction : MonoBehaviour
         SwordCollision = GetComponent<BoxCollider2D>();
     }
 
-    void Update()
+    public void CheckLest()
     {
-        if(SwordLest <= 0)
+        Debug.Log(SwordLest);
+        if (SwordLest <= 0)
         {
-            ChangeWeapon();
+            itemAnimator.SetTrigger("ResetToIdle");
         }
     }
 
@@ -48,10 +49,6 @@ public class WeaponAnimFunction : MonoBehaviour
     public void OffSwordTick()
     {
         SwordCollision.enabled = false;
-    }
-    public void ChangeWeapon()
-    {
-        itemAnimator.SetTrigger("ResetToIdle");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

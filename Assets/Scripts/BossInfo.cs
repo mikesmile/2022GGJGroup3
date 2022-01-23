@@ -6,13 +6,16 @@ public class BossInfo : MonoBehaviour
 {
     public int BossHp = 100;
     public int blink;
-    public float time; 
+    public float time;
+    public SpriteRenderer Goat;
+    public SpriteRenderer Lino;
+    private Color rcolor;
 
     void Start()
     {
         BossHealthBar.Maxhp = BossHp;
         BossHealthBar.Curhp = BossHp;
-        //Renderer[] renderer = GameObject
+
     }
     public void Hurt(int Dmg)
     {
@@ -23,21 +26,22 @@ public class BossInfo : MonoBehaviour
             BossHp = 0;
             Debug.Log("Win");
         }
-        //BlinkBoss(blink, time);
+        BlinkBoss(blink, time, Goat);
     }
 
-    //void BlinkBoss(int numblink, float second)
-    //{
-    //    StartCoroutine(DoBlink(numblink, second));
-    //}
+    void BlinkBoss(int numblink, float second, SpriteRenderer renderer)
+    {
+        StartCoroutine(DoBlink(numblink, second, renderer));
+    }
 
-    //IEnumerator DoBlink(int numblink, float second)
-    //{
-       // for (int i=0; i < numblink * 2; i++ )
-        //{
-        //    renderer.enabled = !renderer.enabled;
-        //    yield return new WaitForSeconds(second);
-        //}
-        //renderer.enabled = true;
-    //}
+    IEnumerator DoBlink(int numblink, float second , SpriteRenderer renderer)
+    {
+        rcolor = renderer.color;
+        for (int i=0; i < numblink * 2; i++ )
+        {
+            renderer.color = Color.red;
+            yield return new WaitForSeconds(second);
+        }
+        renderer.color = rcolor;
+    }
 }

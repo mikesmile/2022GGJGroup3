@@ -173,6 +173,8 @@ MonoBehaviour:
   BossHp: 100
   blink: 3
   time: 0.3
+  Goat: {fileID: 1106359513}
+  Lino: {fileID: 1963405107}
 --- !u!1001 &118519579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -501,6 +503,7 @@ MonoBehaviour:
   weapon: []
   weaponwidth: 1.5
   PosY: -4
+  player1: {fileID: 0}
 --- !u!4 &459784520
 Transform:
   m_ObjectHideFlags: 0

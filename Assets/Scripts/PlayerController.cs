@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
         controlA,
         controlB,
     }
-
+    
     public enum Weapon
     {
         none,
@@ -269,5 +269,13 @@ public class PlayerController : MonoBehaviour
             usedWeapon = Weapon.Shield;
             itemAnimator.SetBool("getShield", true);
         }
+    }
+    public void Dead()
+    {
+        animator.SetTrigger("IsDead");
+        itemAnimator.gameObject.SetActive(false);
+        rb.velocity = new Vector2(0, rb.velocity.y);
+
+        this.enabled = false;
     }
 }

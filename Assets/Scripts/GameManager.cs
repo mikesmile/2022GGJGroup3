@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float PosY = -4f;
     //internal static object instance;
     private BossInfo boss;
+    public PlayerController player1;
     private void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -19,6 +20,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown("space"))
+        {
+            player1.Dead();
+        }
     }
 
     public void RandomWeaponPawn()  //隨機在地圖上產生武器

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_fire balls
+  m_Name: fire balls
   m_Shader: {fileID: -6465566751694194690, guid: 6d4e7d6e545381642ab697ebba32a60f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -37,5 +37,5 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_7fbf139745824d909cd0975f8d7fc506: {r: 1, g: 1, b: 0.6862745, a: 1}
+    - Color_7fbf139745824d909cd0975f8d7fc506: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
