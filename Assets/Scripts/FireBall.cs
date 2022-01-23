@@ -11,15 +11,18 @@ public class FireBall : MonoBehaviour
     public float timeBetweenWave = 1f;
 
     private float timeToSpawn = 2f;
-    
 
+    public bool isStart = false;
     // Start is called before the first frame update
     void Update()
     {
-        if (Time.time >= timeToSpawn)
+        if (isStart)
         {
-            SpawnBlock();
-            timeToSpawn = Time.time + timeBetweenWave;
+            if (Time.time >= timeToSpawn)
+            {
+                SpawnBlock();
+                timeToSpawn = Time.time + timeBetweenWave;
+            }
         }
 
     }
@@ -42,5 +45,7 @@ public class FireBall : MonoBehaviour
             }
         }
     }
+
+  
 
 }

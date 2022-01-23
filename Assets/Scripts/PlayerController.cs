@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
         controlA,
         controlB,
     }
-    
+
     public enum Weapon
     {
         none,
@@ -64,13 +65,13 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         if (isGround)
         {
             extraJumps = extraJumpsValue;
@@ -254,10 +255,22 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.name == "FIRE(Clone)" && isCanMove)
+        if(collision.transform.name.Contains("LaserObject") && !isCanMove)
+        {
+            LaserManager.Self.StopAllMove();
+            collision.transform.DOScaleX(0,2f).OnComplete(() => {
+                Debug.LogWarning("123");
+                BossEasyAI.isLaserAttackStart = false;
+                LaserManager.Self.StopAllMove();
+                Destroy(collision.gameObject);
+            });
+        }
+
+        if ((collision.transform.name == "FIRE(Clone)" || collision.transform.name.Contains("LaserObject")) && isCanMove)
         {
             Dead();
         }
+
         Debug.Log(collision.transform.name);
         if (usedWeapon != Weapon.none) return;
 

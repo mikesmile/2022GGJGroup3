@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public CanvasGroup popUI;
     public GameObject[] weapon;
     public PlayerController player1;
     public PlayerController player2;
@@ -22,10 +24,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (player1.isLive == false && player2.isLive == false)
+        {
+            popUI.DOFade(1f, 0.5f).SetEase(Ease.OutQuad).OnComplete(() => {
 
+            });
+        }
     }
 
-    public void RandomWeaponPawn()  //ÀH¾÷¦b¦a¹Ï¤W²£¥ÍªZ¾¹
+    public void RandomWeaponPawn()  //ï¿½Hï¿½ï¿½ï¿½bï¿½aï¿½Ï¤Wï¿½ï¿½ï¿½ÍªZï¿½ï¿½
     {        
         float halfHeight = cam.orthographicSize;
         float halfWidth = cam.aspect * halfHeight;
@@ -70,9 +77,15 @@ public class GameManager : MonoBehaviour
     }
     public void gameOver()
     {
-        if(player1.isLive == false && player2.isLive ==false)
-        {
+    }
 
-        }
+    public void ToMenu()
+    {
+        TransitionManager.Self.LoadScene("Menu");
+    }
+
+    public void ToStage1()
+    {
+        TransitionManager.Self.LoadScene("Stage1");
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WeaponAnimFunction : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class WeaponAnimFunction : MonoBehaviour
     void Start()
     {
         itemAnimator=GetComponent<Animator>();
-        boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossInfo>();
+        if (SceneManager.GetActiveScene().name.Equals("Stage2")) boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossInfo>();
         SwordLest = SwordDB.lesting;
         ShieldLest = ShieldDB.lesting;
         ShieldCollision = GetComponent<EdgeCollider2D>();
@@ -29,6 +30,8 @@ public class WeaponAnimFunction : MonoBehaviour
         Debug.Log(SwordLest);
         if (SwordLest <= 0)
         {
+            SwordLest = SwordDB.lesting;
+            ShieldLest = ShieldDB.lesting;
             itemAnimator.SetTrigger("ResetToIdle");
         }
         //if (ShieldLest <= 0)
