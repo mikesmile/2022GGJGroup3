@@ -56,7 +56,7 @@ public class WeaponAnimFunction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Boss"))
+        if (collision.gameObject.CompareTag("Boss") && SwordLest>0)
         {
             Debug.Log("2");
             boss.Hurt(SwordDB.Atk);
