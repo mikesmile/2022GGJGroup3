@@ -6,12 +6,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public CanvasGroup popUI;
-    public GameObject[] weapon;
     public PlayerController player1;
     public PlayerController player2;
     Camera cam;
     public float weaponwidth = 1.5f;
     public float PosY = -4f;
+    public GameObject sword;
+    public GameObject sheild;
     //internal static object instance;
     public List<GameObject> CurWeapon = new List<GameObject>();
     private void Start()
@@ -39,29 +40,21 @@ public class GameManager : MonoBehaviour
         float LastRamCamPos = 0f;
         int LastRanIndex = 0;
 
-        for (int i = 0; i < weapon.Length; i++)
-        {
-            int RandomIndex = Random.Range(0, weapon.Length);
-            float RandomPos = Random.Range(-(halfWidth - weaponwidth), (halfWidth - weaponwidth));
 
-            do
+            float RandomPos1 = Random.Range(-(halfWidth - weaponwidth), (halfWidth - weaponwidth));
+            float RandomPos2 = Random.Range(-(halfWidth - weaponwidth), (halfWidth - weaponwidth));
+
+        do
             {
-                RandomPos = Random.Range(-halfWidth, halfWidth);
+                RandomPos1 = Random.Range(-halfWidth, halfWidth);
             }
-            while (Mathf.Abs(RandomPos - LastRamCamPos) < weaponwidth);
+            while (Mathf.Abs(RandomPos1 - RandomPos2) < weaponwidth);
 
-            do
-            {
-                RandomIndex = Random.Range(0, weapon.Length);
-            }
-            while (LastRanIndex == RandomIndex);
 
-            Vector2 newPos = new Vector2(RandomPos, PosY);
-            Instantiate(weapon[RandomIndex], newPos, Quaternion.identity, transform);
-
-            LastRamCamPos = RandomPos;
-            LastRanIndex = RandomIndex;
-        }
+            Vector2 newPos1 = new Vector2(RandomPos1, PosY);
+            Vector2 newPos2 = new Vector2(RandomPos2, PosY);
+            Instantiate(sword, newPos1, Quaternion.identity, transform);
+            Instantiate(sheild, newPos2, Quaternion.identity, transform);
     }
     public void getCount()
     {

@@ -34,10 +34,10 @@ public class WeaponAnimFunction : MonoBehaviour
             ShieldLest = ShieldDB.lesting;
             itemAnimator.SetTrigger("ResetToIdle");
         }
-        //if (ShieldLest <= 0)
-        //{
-        //    itemAnimator.SetTrigger("ResetToIdle");
-        //}
+        if (ShieldLest <= 0)
+        {
+            itemAnimator.SetTrigger("ResetToIdle");
+        }
 
     }
 
@@ -63,7 +63,6 @@ public class WeaponAnimFunction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Boss") && SwordLest>0)
         {
-            Debug.Log("2");
             boss.Hurt(SwordDB.Atk);
             SwordLest -= 1;
         }
