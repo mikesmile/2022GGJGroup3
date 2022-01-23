@@ -31,6 +31,11 @@ public class WeaponAnimFunction : MonoBehaviour
         {
             itemAnimator.SetTrigger("ResetToIdle");
         }
+        //if (ShieldLest <= 0)
+        //{
+        //    itemAnimator.SetTrigger("ResetToIdle");
+        //}
+
     }
 
 

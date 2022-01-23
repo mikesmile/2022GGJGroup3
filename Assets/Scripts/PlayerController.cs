@@ -254,6 +254,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.transform.name == "FIRE(Clone)" && isCanMove)
+        {
+            Dead();
+        }
         Debug.Log(collision.transform.name);
         if (usedWeapon != Weapon.none) return;
 
@@ -272,10 +276,7 @@ public class PlayerController : MonoBehaviour
             itemAnimator.SetBool("getShield", true);
         }
 
-        if (collision.transform.name == "FIRE(Clone)")
-        {
-            Dead();
-        }
+        
     }
     public void Dead()
     {
