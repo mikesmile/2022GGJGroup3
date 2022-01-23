@@ -170,6 +170,7 @@ MonoBehaviour:
   playerControlType: 1
   speed: 8
   jumpForce: 8
+  isLive: 1
   isCanMove: 1
   groundCheck: {fileID: 3012683262722319287}
   checkRadius: 0.5
@@ -409,3 +410,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SwordDB: {fileID: 11400000, guid: 1fc7d7df08fba304ba74baeffdb645af, type: 2}
   ShieldDB: {fileID: 11400000, guid: b8441b3907c1f6f428c28d1c3d47d523, type: 2}
+  playerController: {fileID: 3012683262261682135}

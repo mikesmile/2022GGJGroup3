@@ -15,6 +15,7 @@ public class WeaponAnimFunction : MonoBehaviour
     BoxCollider2D SwordCollision;
     private BossInfo boss;
     private Animator itemAnimator;
+    public PlayerController playerController;
     void Start()
     {
         itemAnimator=GetComponent<Animator>();
@@ -61,9 +62,9 @@ public class WeaponAnimFunction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Boss") && SwordLest>0)
+        if (playerController.UsedWeapon == PlayerController.Weapon.Sword && collision.gameObject.CompareTag("Boss") && SwordLest>0)
         {
-            Debug.Log("2");
+            Debug.Log("攻擊到囉");
             boss.Hurt(SwordDB.Atk);
             SwordLest -= 1;
         }
