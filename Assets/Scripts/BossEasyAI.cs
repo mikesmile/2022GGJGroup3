@@ -46,8 +46,7 @@ public class BossEasyAI : MonoBehaviour
         {
             goatAnimator.SetBool("attack", true);
 
-            //播放火球攻擊
-            fireBall.isStart = true;
+            StartCoroutine("callFireBall");
         }
     }
 
@@ -59,6 +58,15 @@ public class BossEasyAI : MonoBehaviour
             StartCoroutine("callRightLaser");
         else if (x == 1)
             StartCoroutine("callLeftLaser");
+
+    }
+
+    IEnumerator callFireBall()
+    {
+        yield return new WaitForSeconds(5f);
+
+        //播放火球攻擊
+        fireBall.isStart = true;
 
     }
 
