@@ -491,13 +491,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUI: {fileID: 1862181168}
-  weapon:
-  - {fileID: 9097532873186307122, guid: e001aa805a5ff3245a4958517e34be1a, type: 3}
-  - {fileID: 4721274949699648536, guid: f49f97c836edd204e9a95ffde0fa474a, type: 3}
   player1: {fileID: 74536062}
   player2: {fileID: 1977708144}
   weaponwidth: 1.5
   PosY: -3.5
+  sword: {fileID: 4721274949699648536, guid: f49f97c836edd204e9a95ffde0fa474a, type: 3}
+  sheild: {fileID: 9097532873186307122, guid: e001aa805a5ff3245a4958517e34be1a, type: 3}
   CurWeapon: []
 --- !u!4 &459784520
 Transform:
