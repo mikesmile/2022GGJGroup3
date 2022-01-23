@@ -68,4 +68,11 @@ public class GameManager : MonoBehaviour
             RandomWeaponPawn();
         }
     }
+    public void gameOver()
+    {
+        if(player1.isLive == false && player2.isLive ==false)
+        {
+
+        }
+    }
 }

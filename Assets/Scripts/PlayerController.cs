@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public ControlType playerControlType = ControlType.controlA;
     public float speed;
     public float jumpForce;
+    public bool isLive = true;
 
     private float moveInput;
 
@@ -253,6 +254,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.transform.name);
         if (usedWeapon != Weapon.none) return;
 
         if (collision.tag.Equals("Sword"))
@@ -269,13 +271,20 @@ public class PlayerController : MonoBehaviour
             usedWeapon = Weapon.Shield;
             itemAnimator.SetBool("getShield", true);
         }
+
+        if (collision.transform.name == "FIRE(Clone)")
+        {
+            Dead();
+        }
     }
     public void Dead()
     {
         animator.SetTrigger("IsDead");
         itemAnimator.gameObject.SetActive(false);
         rb.velocity = new Vector2(0, rb.velocity.y);
-
+        this.isLive = false;
         this.enabled = false;
     }
+
+
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3683720189941132109}
   - component: {fileID: 9097771776026045617}
   m_Layer: 9
-  m_Name: FIRE_
+  m_Name: FIRE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 3705759216026491519, guid: 56bea94441c78464e9d244e3effc16bb, type: 3}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!95 &80886638675392834
 Animator:
   serializedVersion: 3

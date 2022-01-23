@@ -11,14 +11,6 @@ public class FireBoom : MonoBehaviour
         {
             Instantiate(bomb, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            if(collision.gameObject.CompareTag("Player"))
-            {
-                // player = collision.gameObject.GetComponents<PlayerController>();
-                //if(player != null)
-                //{
-                //    player.Dead();
-                //}
-            }
         }
     }
 }
