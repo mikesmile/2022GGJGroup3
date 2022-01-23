@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         if (player1.isLive == false && player2.isLive == false)
         {
+            popUI.interactable = true;
             popUI.DOFade(1f, 0.5f).SetEase(Ease.OutQuad).OnComplete(() => {
 
             });

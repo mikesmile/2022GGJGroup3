@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.transform.name.Contains("LaserObject") && !isCanMove)
         {
-            LaserManager.Self.StopAllMove();
+            //LaserManager.Self.StopAllMove();
             collision.transform.DOScaleX(0,2f).OnComplete(() => {
                 Debug.LogWarning("123");
                 BossEasyAI.isLaserAttackStart = false;
