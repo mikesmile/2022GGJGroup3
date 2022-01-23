@@ -41,7 +41,8 @@ public class BossEasyAI : MonoBehaviour
             //播放雷射攻擊
             RandomLaser();
         }
-        else if( BossHealthBar.Curhp > (float)(BossHealthBar.Maxhp / 2) )
+
+        if( BossHealthBar.Curhp > (float)(BossHealthBar.Maxhp / 2) )
         {
             goatAnimator.SetBool("attack", true);
 
@@ -77,7 +78,7 @@ public class BossEasyAI : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         markL.gameObject.SetActive(false);
-        if (LaserManager.Self.isRightStart)
+        if (LaserManager.Self.isLeftStart)
             LaserManager.Self.spawnLeftLaser();
     }
 }
