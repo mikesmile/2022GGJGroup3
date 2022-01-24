@@ -62,17 +62,11 @@ public class WeaponAnimFunction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Boss") && SwordLest>0)
-        {
-            Debug.Log("攻擊到囉");
-            boss.Hurt(SwordDB.Atk);
+
+        if( playerController.UsedWeapon == PlayerController.Weapon.Sword && collision.gameObject.CompareTag( "Boss" ) && SwordLest > 0 ) {
+            Debug.Log( "攻擊到囉" );
+            boss.Hurt( SwordDB.Atk );
             SwordLest -= 1;
         }
-        //if (playerController.UsedWeapon == PlayerController.Weapon.Sword && collision.gameObject.CompareTag("Boss") && SwordLest > 0)
-        //{
-        //    Debug.Log("攻擊到囉");
-        //    boss.Hurt(SwordDB.Atk);
-        //    SwordLest -= 1;
-        //}
     }
 }

@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioMgr : MonoBehaviour
-{
+public class AudioMgr : SingletonBase<AudioMgr> {
+
+
     public AudioSource audioSource;
+    public AudioSource player1Source;
+    public AudioSource player2Source;
+
     public AudioClip JumpClip;
     public AudioClip Attack;
 
@@ -25,5 +29,15 @@ public class AudioMgr : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void Jump1() {
+
+        player1Source.PlayOneShot( JumpClip );
+    }
+
+    public void Jump2() {
+
+        player2Source.PlayOneShot( JumpClip );
     }
 }

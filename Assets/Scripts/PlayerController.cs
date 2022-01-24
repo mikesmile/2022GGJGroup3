@@ -86,11 +86,13 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
                 {
+                    AudioMgr.Self.Jump1();
                     rb.velocity = Vector2.up * jumpForce;
                     extraJumps--;
                 }
                 else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGround == true)
                 {
+                    AudioMgr.Self.Jump1();
                     rb.velocity = Vector2.up * jumpForce;
                 }
             }
@@ -144,11 +146,14 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.W) && extraJumps > 0)
                 {
+                    AudioMgr.Self.Jump1();
+
                     rb.velocity = Vector2.up * jumpForce;
                     extraJumps--;
                 }
                 else if (Input.GetKeyDown(KeyCode.W) && extraJumps == 0 && isGround == true)
                 {
+                    AudioMgr.Self.Jump1();
                     rb.velocity = Vector2.up * jumpForce;
                 }
             }
