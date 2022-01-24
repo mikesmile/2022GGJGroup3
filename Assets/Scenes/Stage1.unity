@@ -506,10 +506,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3012683262261682135, guid: d9fae357e318e4d89ba5c898b3e582f1, type: 3}
-      propertyPath: Jump
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3012683262261682137, guid: d9fae357e318e4d89ba5c898b3e582f1, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -747,14 +743,6 @@ PrefabInstance:
     - target: {fileID: 3012683262261682132, guid: a7485f279ad1b4f5291a149234c9e526, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3012683262261682135, guid: a7485f279ad1b4f5291a149234c9e526, type: 3}
-      propertyPath: Jump
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3012683262261682135, guid: a7485f279ad1b4f5291a149234c9e526, type: 3}
-      propertyPath: audioMgr
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3012683262261682137, guid: a7485f279ad1b4f5291a149234c9e526, type: 3}
       propertyPath: m_Name

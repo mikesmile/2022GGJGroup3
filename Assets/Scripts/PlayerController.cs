@@ -7,6 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Animator itemAnimator;
+
+    [SerializeField]
+    private AudioClip jumpClip;
+    [SerializeField]
+    private AudioClip attackClip;
     public enum ControlType
     {
         controlA,
@@ -42,8 +47,6 @@ public class PlayerController : MonoBehaviour
 
     private int extraJumps;
     public int extraJumpsValue;
-
-    public AudioMgr Jump;
 
     private Weapon usedWeapon = Weapon.none;
 
@@ -86,13 +89,13 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
                 {
-                    AudioMgr.Self.Jump1();
+                    AudioMgr.Self.PlayAudio( jumpClip );
                     rb.velocity = Vector2.up * jumpForce;
                     extraJumps--;
                 }
                 else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGround == true)
                 {
-                    AudioMgr.Self.Jump1();
+                    AudioMgr.Self.PlayAudio( jumpClip );
                     rb.velocity = Vector2.up * jumpForce;
                 }
             }
@@ -146,14 +149,14 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.W) && extraJumps > 0)
                 {
-                    AudioMgr.Self.Jump1();
+                    AudioMgr.Self.PlayAudio( jumpClip );
 
                     rb.velocity = Vector2.up * jumpForce;
                     extraJumps--;
                 }
                 else if (Input.GetKeyDown(KeyCode.W) && extraJumps == 0 && isGround == true)
                 {
-                    AudioMgr.Self.Jump1();
+                    AudioMgr.Self.PlayAudio( jumpClip );
                     rb.velocity = Vector2.up * jumpForce;
                 }
             }
@@ -271,12 +274,8 @@ public class PlayerController : MonoBehaviour
             });
         }
 
-        if ((collision.transform.name == "FIRE(Clone)" || collision.transform.name.Contains("LaserObject")) && isCanMove)
-        {
-            Dead();
-        }
 
-        Debug.Log(collision.transform.name);
+        Debug.Log("拿到的武器是: " + collision.transform.name);
         if (usedWeapon != Weapon.none) return;
 
         if (collision.tag.Equals("Sword"))
@@ -298,6 +297,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Dead()
     {
+        this.gameObject.tag = "Untagged";//死亡後不要被火球炸到
         animator.SetTrigger("IsDead");
         itemAnimator.gameObject.SetActive(false);
         rb.velocity = new Vector2(0, rb.velocity.y);

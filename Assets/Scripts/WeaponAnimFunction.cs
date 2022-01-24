@@ -16,6 +16,7 @@ public class WeaponAnimFunction : MonoBehaviour
     private BossInfo boss;
     private Animator itemAnimator;
     public PlayerController playerController;
+
     void Start()
     {
         itemAnimator=GetComponent<Animator>();
@@ -31,6 +32,7 @@ public class WeaponAnimFunction : MonoBehaviour
         Debug.Log(SwordLest);
         if (SwordLest <= 0)
         {
+            Debug.LogWarning("耐久度歸零了 武器不見了");
             SwordLest = SwordDB.lesting;
             ShieldLest = ShieldDB.lesting;
             itemAnimator.SetTrigger("ResetToIdle");

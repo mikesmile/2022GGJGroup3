@@ -6,17 +6,6 @@ public class AudioMgr : SingletonBase<AudioMgr> {
 
 
     public AudioSource audioSource;
-    public AudioSource player1Source;
-    public AudioSource player2Source;
-
-    public AudioClip JumpClip;
-    public AudioClip Attack;
-
-    public void Jump()
-    {
-        audioSource.PlayOneShot(JumpClip);
-        audioSource.PlayOneShot(Attack);
-    }
 
 
 
@@ -31,13 +20,11 @@ public class AudioMgr : SingletonBase<AudioMgr> {
 
     }
 
-    public void Jump1() {
+    public void PlayAudio( AudioClip audioClip ) {
 
-        player1Source.PlayOneShot( JumpClip );
-    }
+        var obj = Instantiate( Resources.Load<GameObject>( "Prefabs/SoundObj" ), this.transform );
 
-    public void Jump2() {
+        obj.GetComponent<SoundObj>().Play( audioClip );
 
-        player2Source.PlayOneShot( JumpClip );
     }
 }

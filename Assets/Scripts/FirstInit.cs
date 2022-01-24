@@ -12,8 +12,10 @@ public class FirstInit : MonoBehaviour
     {
         DOTween.Init();
         GameObject transition = Instantiate(Resources.Load<GameObject>("Prefabs/TransitionCanvas"));
+        GameObject weaponManager = Instantiate( Resources.Load<GameObject>( "Prefabs/WeaponManager" ) );
         //Self = config.GetComponent<Config>();
-        DontDestroyOnLoad(transition);
+        DontDestroyOnLoad( transition );
+        DontDestroyOnLoad( weaponManager );
     }
     // Start is called before the first frame update
     void Start()

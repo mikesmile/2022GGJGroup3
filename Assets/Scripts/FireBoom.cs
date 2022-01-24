@@ -10,6 +10,12 @@ public class FireBoom : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Ground"))
         {
             Instantiate(bomb, transform.position, Quaternion.identity);
+
+            if( collision.gameObject.CompareTag( "Player" ) ) {
+
+                collision.gameObject.GetComponent<PlayerController>().Dead();
+            }
+
             Destroy(gameObject);
         }
     }
