@@ -179,7 +179,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  extraJumpsValue: 2
+  extraJumpsValue: 1
 --- !u!1 &3012683262722319284
 GameObject:
   m_ObjectHideFlags: 0

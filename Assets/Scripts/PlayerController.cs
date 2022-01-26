@@ -263,15 +263,23 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.name.Contains("LaserObject") && !isCanMove)
-        {
-            //LaserManager.Self.StopAllMove();
-            collision.transform.DOScaleX(0,2f).OnComplete(() => {
-                Debug.LogWarning("123");
-                BossEasyAI.isLaserAttackStart = false;
-                LaserManager.Self.StopAllMove();
-                Destroy(collision.gameObject);
-            });
+        if( collision.transform.name.Contains( "LaserObject" ) ) {
+
+            //if( !isCanMove ) {
+
+            //    //把移動的tweener取消，來作縮小的動畫
+            //    LaserManager.Self.StopAllMove();
+
+            //    collision.transform.DOScaleX( 0, 2f ).OnComplete( () => {
+            //        Debug.LogWarning( "123" );
+            //        BossEasyAI.Self.isLaserAttackStart = false;
+            //        LaserManager.Self.StopAllMove();
+            //        Destroy( collision.gameObject );
+            //    } );
+            //}
+            //else {
+            //    Dead();
+            //}
         }
 
 

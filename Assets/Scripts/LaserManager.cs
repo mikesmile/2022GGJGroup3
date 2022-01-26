@@ -41,7 +41,7 @@ public class LaserManager : SingletonBase<LaserManager>
         tweener1 = obj.transform.DOLocalMoveX(-40, 2.5f).OnComplete(()=> {
             isRightStart = true;
             Debug.LogWarning("222");
-            BossEasyAI.isLaserAttackStart = false;
+            BossEasyAI.Self.isLaserAttackStart = false;
             Destroy(obj);
         });
     }
@@ -56,7 +56,7 @@ public class LaserManager : SingletonBase<LaserManager>
             isLeftStart = true;
             Debug.LogWarning("222");
 
-            BossEasyAI.isLaserAttackStart = false;
+            BossEasyAI.Self.isLaserAttackStart = false;
             Destroy(obj);
         });
     }
