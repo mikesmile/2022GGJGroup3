@@ -43,3 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d17591417e32b43a4506c96ef43836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1UsedWeapon: 0
+  player2UsedWeapon: 0
+  weaponwidth: 1.5
+  PosY: -3.5
+  sword: {fileID: 4721274949699648536, guid: f49f97c836edd204e9a95ffde0fa474a, type: 3}
+  sheild: {fileID: 9097532873186307122, guid: e001aa805a5ff3245a4958517e34be1a, type: 3}

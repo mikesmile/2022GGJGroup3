@@ -20,7 +20,9 @@ public class WeaponAnimFunction : MonoBehaviour
     void Start()
     {
         itemAnimator=GetComponent<Animator>();
-        if (SceneManager.GetActiveScene().name.Equals("Stage2")) boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossInfo>();
+        if( SceneManager.GetActiveScene().name.Equals( "Stage2" ) )
+            boss = GameObject.FindGameObjectWithTag( "Boss" ).GetComponent<BossInfo>();
+        
         SwordLest = SwordDB.lesting;
         ShieldLest = ShieldDB.lesting;
         ShieldCollision = GetComponent<EdgeCollider2D>();
@@ -36,11 +38,17 @@ public class WeaponAnimFunction : MonoBehaviour
             SwordLest = SwordDB.lesting;
             ShieldLest = ShieldDB.lesting;
             itemAnimator.SetTrigger("ResetToIdle");
+
+            //武器壞掉直接紀錄消失
+            if( playerController.playerControlType == PlayerController.ControlType.controlA )
+                WeaponManager.Self.player1UsedWeapon = PlayerController.Weapon.none;
+            else if( playerController.playerControlType == PlayerController.ControlType.controlB )
+                WeaponManager.Self.player2UsedWeapon = PlayerController.Weapon.none;
+
+            //再次生成武器邏輯
+            WeaponManager.Self.WeaponPawn();
         }
-        //if (ShieldLest <= 0)
-        //{
-        //    itemAnimator.SetTrigger("ResetToIdle");
-        //}
+
 
     }
 

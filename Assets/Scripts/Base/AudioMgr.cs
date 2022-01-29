@@ -7,7 +7,10 @@ public class AudioMgr : SingletonBase<AudioMgr> {
 
     public AudioSource audioSource;
 
+    protected override void Awake() {
+        base.Awake();
 
+    }
 
     void Start()
     {

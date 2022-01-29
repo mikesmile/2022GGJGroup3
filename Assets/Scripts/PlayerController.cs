@@ -75,6 +75,38 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        //武器沿用
+        if( playerControlType == ControlType.controlA && WeaponManager.Self.player1UsedWeapon != Weapon.none ) {
+
+            switch( WeaponManager.Self.player1UsedWeapon ) {
+                case Weapon.none:
+                    break;
+                case Weapon.Sword:
+                    EquipSword();
+                    break;
+                case Weapon.Shield:
+                    EquipShield();
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if( playerControlType == ControlType.controlB && WeaponManager.Self.player2UsedWeapon != Weapon.none ) {
+
+            switch( WeaponManager.Self.player2UsedWeapon ) {
+                case Weapon.none:
+                    break;
+                case Weapon.Sword:
+                    EquipSword();
+                    break;
+                case Weapon.Shield:
+                    EquipShield();
+                    break;
+                default:
+                    break;
+            }
+        }
+
         if (isGround)
         {
             extraJumps = extraJumpsValue;
@@ -263,42 +295,25 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if( collision.transform.name.Contains( "LaserObject" ) ) {
-
-            //if( !isCanMove ) {
-
-            //    //把移動的tweener取消，來作縮小的動畫
-            //    LaserManager.Self.StopAllMove();
-
-            //    collision.transform.DOScaleX( 0, 2f ).OnComplete( () => {
-            //        Debug.LogWarning( "123" );
-            //        BossEasyAI.Self.isLaserAttackStart = false;
-            //        LaserManager.Self.StopAllMove();
-            //        Destroy( collision.gameObject );
-            //    } );
-            //}
-            //else {
-            //    Dead();
-            //}
-        }
 
 
-        Debug.Log("拿到的武器是: " + collision.transform.name);
+
+
         if (usedWeapon != Weapon.none) return;
 
         if (collision.tag.Equals("Sword"))
         {
+            Debug.Log( "拿到的武器是: " + collision.transform.name );
             Destroy(collision.transform.gameObject);
 
-            usedWeapon = Weapon.Sword;
-            itemAnimator.SetBool("getSword", true);
+            EquipSword();
         }
         else if (collision.tag.Equals("Shield"))
         {
+            Debug.Log( "拿到的武器是: " + collision.transform.name );
             Destroy(collision.transform.gameObject);
 
-            usedWeapon = Weapon.Shield;
-            itemAnimator.SetBool("getShield", true);
+            EquipShield();
         }
 
         
@@ -314,4 +329,30 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public void EquipSword() {
+
+        if( playerControlType == ControlType.controlA && WeaponManager.Self.player1UsedWeapon == Weapon.none ) {
+            WeaponManager.Self.player1UsedWeapon = Weapon.Sword;
+        }
+        else if( playerControlType == ControlType.controlB && WeaponManager.Self.player2UsedWeapon == Weapon.none ) {
+            WeaponManager.Self.player2UsedWeapon = Weapon.Sword;
+        }
+
+        usedWeapon = Weapon.Sword;
+        itemAnimator.SetBool( "getSword", true );
+    }
+
+
+    public void EquipShield() {
+
+        if( playerControlType == ControlType.controlA && WeaponManager.Self.player1UsedWeapon == Weapon.none ) {
+            WeaponManager.Self.player1UsedWeapon = Weapon.Shield;
+        }
+        else if( playerControlType == ControlType.controlB && WeaponManager.Self.player2UsedWeapon == Weapon.none ) {
+            WeaponManager.Self.player2UsedWeapon = Weapon.Shield;
+        }
+
+        usedWeapon = Weapon.Shield;
+        itemAnimator.SetBool( "getShield", true );
+    }
 }

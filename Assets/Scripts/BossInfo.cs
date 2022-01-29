@@ -11,37 +11,49 @@ public class BossInfo : MonoBehaviour
     public SpriteRenderer Lino;
     private Color rcolor;
 
+    private Coroutine blinkRoutine;
     void Start()
     {
-        BossHealthBar.Maxhp = BossHp;
-        BossHealthBar.Curhp = BossHp;
+        BossHealthBar.Self.Maxhp = BossHp;
+        BossHealthBar.Self.Curhp = BossHp;
 
     }
     public void Hurt(int Dmg)
     {
         BossHp -= Dmg;
-        BossHealthBar.Curhp = BossHp;
-        if (BossHp <= 0)
-        {
+        BossHealthBar.Self.Curhp = BossHp;
+        
+        if( BossHp <= 0 ) {
             BossHp = 0;
-            Debug.Log("Win");
+            BossHealthBar.Self.Curhp = BossHp;
+
+            Debug.Log( "Win" );
+
+            TransitionManager.Self.LoadScene( "Ending" );
+
+            return;
         }
+
         BlinkBoss(blink, time, Goat);
     }
 
-    void BlinkBoss(int numblink, float second, SpriteRenderer renderer)
-    {
-        StartCoroutine(DoBlink(numblink, second, renderer));
+    void BlinkBoss(int numblink, float second, SpriteRenderer renderer ) {
+
+        blinkRoutine = null;
+        blinkRoutine = StartCoroutine( DoBlink(numblink, second, renderer));
     }
 
     IEnumerator DoBlink(int numblink, float second , SpriteRenderer renderer)
     {
+        renderer.color = Color.white;
         rcolor = renderer.color;
         for (int i=0; i < numblink * 2; i++ )
         {
             renderer.color = Color.red;
             yield return new WaitForSeconds(second);
+            renderer.color = rcolor;
+            yield return new WaitForSeconds( second );
         }
-        renderer.color = rcolor;
+
     }
 }

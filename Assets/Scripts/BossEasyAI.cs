@@ -30,42 +30,40 @@ public class BossEasyAI : SingletonBase<BossEasyAI> {
     void Update()
     {
         //Debug.LogWarning(!LaserManager.Self.isLaserOn());
-       
+
         //for Test
-        if( !isLaserAttackStart && BossHealthBar.Curhp > (float)( BossHealthBar.Maxhp / 2 ) ) {
+        //if( !isLaserAttackStart && BossHealthBar.Self.Curhp > (float)( BossHealthBar.Self.Maxhp / 2 ) ) {
 
 
-            lionAnimator.SetBool( "attack", true );
-            goatAnimator.SetBool( "attack", false );
-
-            isLaserAttackStart = true;
-            //播放雷射攻擊
-            RandomLaser();
-        }
-
-        if( BossHealthBar.Curhp <= (float)( BossHealthBar.Maxhp / 2 ) ) {
-            goatAnimator.SetBool( "attack", true );
-
-            StartCoroutine( "callFireBall" );
-        }
-
-        //if(!isLaserAttackStart && BossHealthBar.Curhp <= (float)(BossHealthBar.Maxhp / 2))
-        //{
-
-
-        //    lionAnimator.SetBool("attack",true);
-        //    goatAnimator.SetBool("attack", false);
+        //    lionAnimator.SetBool( "attack", true );
+        //    goatAnimator.SetBool( "attack", false );
 
         //    isLaserAttackStart = true;
         //    //播放雷射攻擊
         //    RandomLaser();
         //}
 
-        //if( BossHealthBar.Curhp > (float)(BossHealthBar.Maxhp / 2) )
-        //{
-        //    goatAnimator.SetBool("attack", true);
+        //if( BossHealthBar.Self.Curhp <= (float)( BossHealthBar.Self.Maxhp / 2 ) ) {
+        //    goatAnimator.SetBool( "attack", true );
 
-        //    StartCoroutine("callFireBall");
+        //    StartCoroutine( "callFireBall" );
+        //}
+
+        //if( !isLaserAttackStart && BossHealthBar.Curhp <= (float)( BossHealthBar.Maxhp / 2 ) ) {
+
+
+        //    lionAnimator.SetBool( "attack", true );
+        //    goatAnimator.SetBool( "attack", false );
+
+        //    isLaserAttackStart = true;
+        //    //播放雷射攻擊
+        //    RandomLaser();
+        //}
+
+        //if( BossHealthBar.Curhp > (float)( BossHealthBar.Maxhp / 2 ) ) {
+        //    goatAnimator.SetBool( "attack", true );
+
+        //    StartCoroutine( "callFireBall" );
         //}
     }
 

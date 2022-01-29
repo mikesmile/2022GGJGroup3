@@ -7,15 +7,17 @@ public class BGMHandler : MonoBehaviour
 
     private void Awake()
     {
-        if (GameMgr.Gamemgr.IsBgmReady)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(this.gameObject);
-            GameMgr.Gamemgr.IsBgmReady = true;
-        }
+
+        DontDestroyOnLoad( this.gameObject );
+        //if (GameMgr.Gamemgr.IsBgmReady)
+        //{
+        //    //Destroy(this.gameObject);
+        //}
+        //else
+        //{
+        //    DontDestroyOnLoad(this.gameObject);
+        //    GameMgr.Gamemgr.IsBgmReady = true;
+        //}
 
     }
 }
