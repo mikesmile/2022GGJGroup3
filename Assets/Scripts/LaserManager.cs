@@ -34,37 +34,36 @@ public class LaserManager : SingletonBase<LaserManager>
 
     public void spawnRightLaser()
     {
-        isRightStart = false;
 
         GameObject obj = Instantiate(Resources.Load<GameObject>("Prefabs/LaserObjectR"), rightPoint.transform);
 
         tweener1 = obj.transform.DOLocalMoveX(-40, 2.5f).OnComplete(()=> {
-            isRightStart = true;
             Debug.LogWarning("222");
-            BossEasyAI.Self.isLaserAttackStart = false;
+            BossEasyAI.Self.RandomLaser();
             Destroy(obj);
         });
+
+        obj.GetComponent<Laser>().Init(tweener1);
+
     }
 
     public void spawnLeftLaser()
     {
-        isLeftStart = false;
         GameObject obj = Instantiate(Resources.Load<GameObject>("Prefabs/LaserObjectL"), leftPoint.transform);
 
 
         tweener2 = obj.transform.DOLocalMoveX(40, 2.5f).OnComplete(() => {
-            isLeftStart = true;
             Debug.LogWarning("222");
 
-            BossEasyAI.Self.isLaserAttackStart = false;
+            BossEasyAI.Self.RandomLaser();
             Destroy(obj);
         });
+
+        obj.GetComponent<Laser>().Init(tweener2);
     }
 
     public void StopAllMove()
     {
-        isRightStart = true;
-        isLeftStart = true;
         tweener1.Kill();
         tweener2.Kill();
         tweener1 = null;

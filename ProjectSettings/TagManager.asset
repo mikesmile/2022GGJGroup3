@@ -9,6 +9,8 @@ TagManager:
   - Shield
   - Weapon
   - Ground
+  - Fire
+  - Laser
   layers:
   - Default
   - TransparentFX

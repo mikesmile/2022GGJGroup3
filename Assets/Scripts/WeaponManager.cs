@@ -17,6 +17,10 @@ public class WeaponManager : SingletonBase<WeaponManager> {
     public GameObject sword;
     public GameObject sheild;
 
+    public int hasSword = 0;
+    public int hasShield = 0;
+
+
     protected override void Awake() {
         base.Awake();
 
@@ -37,10 +41,18 @@ public class WeaponManager : SingletonBase<WeaponManager> {
 
     public void WeaponPawn() {
 
-        if( cam == null ) cam = GameObject.Find( "Main Camera" ).GetComponent<Camera>();
+        if (cam == null) cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 
-        if( player1UsedWeapon == PlayerController.Weapon.none && player2UsedWeapon == PlayerController.Weapon.none )
-            RandomWeaponPawn();
+        if (player1UsedWeapon == PlayerController.Weapon.none && player2UsedWeapon == PlayerController.Weapon.none)
+        {
+            if (hasSword == 0 && hasShield == 0)
+                RandomWeaponPawn();
+            else if (hasSword == 1 && hasShield == 0)
+                RandomAnotherWeapon( PlayerController.Weapon.Sword);
+            else if (hasSword == 0 && hasShield == 1)
+                RandomAnotherWeapon(PlayerController.Weapon.Shield);
+
+        }
         else if( player1UsedWeapon == PlayerController.Weapon.none )
             RandomAnotherWeapon( player2UsedWeapon );
         else if( player2UsedWeapon == PlayerController.Weapon.none )
@@ -51,6 +63,16 @@ public class WeaponManager : SingletonBase<WeaponManager> {
 
     public void ResetWeaponNum() {
 
+        if(transform.childCount != 0)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
+        }
+
+        hasSword = 0;
+        hasShield = 0;
         player1UsedWeapon = PlayerController.Weapon.none;
         player2UsedWeapon = PlayerController.Weapon.none;
     }
@@ -74,6 +96,8 @@ public class WeaponManager : SingletonBase<WeaponManager> {
         Vector2 newPos2 = new Vector2( RandomPos2, PosY );
         Instantiate( sword, newPos1, Quaternion.identity, transform );
         Instantiate( sheild, newPos2, Quaternion.identity, transform );
+        hasSword = 1;
+        hasShield = 1;
     }
 
     public void RandomAnotherWeapon( PlayerController.Weapon another ) {
@@ -84,9 +108,11 @@ public class WeaponManager : SingletonBase<WeaponManager> {
         Vector2 newPos2 = new Vector2( RandomPos2, PosY );
 
         if(another == PlayerController.Weapon.Sword ) {
+            hasShield = 1;
             Instantiate( sheild, newPos2, Quaternion.identity, transform );
         }
         else if( another == PlayerController.Weapon.Shield ) {
+            hasSword = 1;
             Instantiate( sword, newPos2, Quaternion.identity, transform );
         }
     }

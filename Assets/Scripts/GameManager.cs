@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public PlayerController player2;
 
     //internal static object instance;
-    public List<GameObject> CurWeapon = new List<GameObject>();
     private void Start()
     {
 

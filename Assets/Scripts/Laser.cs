@@ -7,6 +7,8 @@ public class Laser : MonoBehaviour
 {
 
     private PlayerController playerController;
+    private Tweener tweener;
+    private Tweener scaleTweener;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,35 +21,58 @@ public class Laser : MonoBehaviour
         
     }
 
+    public void Init(Tweener tweener)
+    {
+        this.tweener = tweener;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ( collision.gameObject.CompareTag("Weapon") )
+        if ( collision.gameObject.CompareTag("Weapon"))
         {
             playerController = collision.transform.parent.GetComponent<PlayerController>();
 
             if( playerController.UsedWeapon == PlayerController.Weapon.Shield &&  !playerController.isCanMove ) {
 
-                //ß‚≤æ∞ ™∫tweener®˙Æ¯°A®”ß@¡Y§p™∫∞ µe
-                LaserManager.Self.StopAllMove();
+                //ÔøΩ‚≤æÔøΩ ™ÔøΩtweenerÔøΩÔøΩÔøΩÔøΩÔøΩAÔøΩ”ß@ÔøΩYÔøΩpÔøΩÔøΩÔøΩ µe
 
-                this.transform.DOScaleX( 0, 2f ).OnComplete( () => {
-                    Debug.LogWarning( "123" );
-                    BossEasyAI.Self.isLaserAttackStart = false;
+                tweener.Pause();
+                scaleTweener = this.transform.DOScaleX(0, 2f).OnComplete(() =>
+                {
+
+                    Debug.LogWarning("123");
                     LaserManager.Self.StopAllMove();
-                    Destroy( this.gameObject );
-                } );
+                    BossEasyAI.Self.RandomLaser();
+                    Destroy(this.gameObject);
+                });
             }
 
         }
         else if( collision.gameObject.CompareTag( "Player" ) ) {
 
-            collision.gameObject.GetComponent<PlayerController>().Dead();//≥QπpÆg•¥¶∫
+
+            Debug.LogWarning("Ê≠ª‰∫°");
+            collision.gameObject.GetComponent<PlayerController>().Dead();//ÔøΩQÔøΩpÔøΩgÔøΩÔøΩÔøΩÔøΩ
         }
     }
 
     private void OnTriggerStay2D( Collider2D collision ) {
-       
 
+        if(playerController != null )
+        {
+            Debug.LogWarning("ÊúâÈÄ≤‰æÜÂóé");
+            Debug.LogWarning(playerController.isCanMove);
+            //Debug.LogWarning(collision.gameObject.tag);
+            if (playerController.isCanMove)
+            {
+                Debug.LogError("ÊÅ¢Âæ©Èõ∑Â∞ÑÈÄ≤Ë°å");
+                scaleTweener.Kill();
+                tweener.Play();
+
+                collision.gameObject.GetComponent<PlayerController>().Dead();
+            }
+
+        }
 
     }
 }

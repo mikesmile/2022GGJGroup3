@@ -11,7 +11,7 @@ public class SingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 
         get
         {
-            if (self == null) Debug.LogError(string.Format("did't create this {0} prefab!", typeof(T).Name));
+            //if (self == null) Debug.LogError(string.Format("did't create this {0} prefab!", typeof(T).Name));
             return self;
         }
     }

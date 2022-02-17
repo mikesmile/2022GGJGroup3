@@ -19,6 +19,8 @@ public class BossEasyAI : SingletonBase<BossEasyAI> {
 
     private bool isCrazy = false;
     public bool isLaserAttackStart = false;
+    public bool isFireBallStart = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,38 +34,47 @@ public class BossEasyAI : SingletonBase<BossEasyAI> {
         //Debug.LogWarning(!LaserManager.Self.isLaserOn());
 
         //for Test
-        //if( !isLaserAttackStart && BossHealthBar.Self.Curhp > (float)( BossHealthBar.Self.Maxhp / 2 ) ) {
+        if (!isLaserAttackStart && BossHealthBar.Self.Curhp > (float)(BossHealthBar.Self.Maxhp / 2))
+        {
 
 
-        //    lionAnimator.SetBool( "attack", true );
-        //    goatAnimator.SetBool( "attack", false );
+            lionAnimator.SetBool("attack", true);
+            goatAnimator.SetBool("attack", false);
+
+            isLaserAttackStart = true;
+            //播放雷射攻擊
+            RandomLaser();
+        }
+
+        if (BossHealthBar.Self.Curhp <= (float)(BossHealthBar.Self.Maxhp / 2))
+        {
+            goatAnimator.SetBool("attack", true);
+
+            StartCoroutine("callFireBall");
+        }
+
+        //if (!isLaserAttackStart && BossHealthBar.Self.Curhp <= (float)(BossHealthBar.Self.Maxhp / 2))
+        //{
+
+
+        //    lionAnimator.SetBool("attack", true);
+        //    goatAnimator.SetBool("attack", false);
 
         //    isLaserAttackStart = true;
+        //    fireBall.isStart = false;
+        //    isFireBallStart = false;
+
         //    //播放雷射攻擊
         //    RandomLaser();
         //}
 
-        //if( BossHealthBar.Self.Curhp <= (float)( BossHealthBar.Self.Maxhp / 2 ) ) {
-        //    goatAnimator.SetBool( "attack", true );
+        //if ( !isFireBallStart && BossHealthBar.Self.Curhp > (float)(BossHealthBar.Self.Maxhp / 2))
+        //{
+        //    goatAnimator.SetBool("attack", true);
 
-        //    StartCoroutine( "callFireBall" );
-        //}
+        //    isFireBallStart = true;
 
-        //if( !isLaserAttackStart && BossHealthBar.Curhp <= (float)( BossHealthBar.Maxhp / 2 ) ) {
-
-
-        //    lionAnimator.SetBool( "attack", true );
-        //    goatAnimator.SetBool( "attack", false );
-
-        //    isLaserAttackStart = true;
-        //    //播放雷射攻擊
-        //    RandomLaser();
-        //}
-
-        //if( BossHealthBar.Curhp > (float)( BossHealthBar.Maxhp / 2 ) ) {
-        //    goatAnimator.SetBool( "attack", true );
-
-        //    StartCoroutine( "callFireBall" );
+        //    StartCoroutine("callFireBall");
         //}
     }
 
@@ -92,6 +103,7 @@ public class BossEasyAI : SingletonBase<BossEasyAI> {
         markR.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         markR.gameObject.SetActive(false);
+
         if (LaserManager.Self.isRightStart)
             LaserManager.Self.spawnRightLaser();
     }
@@ -99,10 +111,9 @@ public class BossEasyAI : SingletonBase<BossEasyAI> {
     IEnumerator callLeftLaser()
     {
         markL.gameObject.SetActive(true);
-
         yield return new WaitForSeconds(2f);
-
         markL.gameObject.SetActive(false);
+
         if (LaserManager.Self.isLeftStart)
             LaserManager.Self.spawnLeftLaser();
     }
