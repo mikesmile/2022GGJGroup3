@@ -34,31 +34,30 @@ public class BossEasyAI : SingletonBase<BossEasyAI> {
         //Debug.LogWarning(!LaserManager.Self.isLaserOn());
 
         //for Test
-        if (!isLaserAttackStart && BossHealthBar.Self.Curhp > (float)(BossHealthBar.Self.Maxhp / 2))
-        {
-
-
-            lionAnimator.SetBool("attack", true);
-            goatAnimator.SetBool("attack", false);
-
-            isLaserAttackStart = true;
-            //播放雷射攻擊
-            RandomLaser();
-        }
-
-        if (BossHealthBar.Self.Curhp <= (float)(BossHealthBar.Self.Maxhp / 2))
-        {
-            goatAnimator.SetBool("attack", true);
-
-            StartCoroutine("callFireBall");
-        }
-
-        //if (!isLaserAttackStart && BossHealthBar.Self.Curhp <= (float)(BossHealthBar.Self.Maxhp / 2))
+        //if (!isLaserAttackStart && BossHealthBar.Self.Curhp > (float)(BossHealthBar.Self.Maxhp / 2))
         //{
 
 
         //    lionAnimator.SetBool("attack", true);
         //    goatAnimator.SetBool("attack", false);
+
+        //    isLaserAttackStart = true;
+        //    //播放雷射攻擊
+        //    RandomLaser();
+        //}
+
+        //if (BossHealthBar.Self.Curhp <= (float)(BossHealthBar.Self.Maxhp / 2))
+        //{
+        //    goatAnimator.SetBool("attack", true);
+
+        //    StartCoroutine("callFireBall");
+        //}
+
+        //if( !isLaserAttackStart && BossHealthBar.Self.Curhp <= (float)( BossHealthBar.Self.Maxhp / 2 ) ) {
+
+
+        //    lionAnimator.SetBool( "attack", true );
+        //    goatAnimator.SetBool( "attack", false );
 
         //    isLaserAttackStart = true;
         //    fireBall.isStart = false;
@@ -68,14 +67,21 @@ public class BossEasyAI : SingletonBase<BossEasyAI> {
         //    RandomLaser();
         //}
 
-        //if ( !isFireBallStart && BossHealthBar.Self.Curhp > (float)(BossHealthBar.Self.Maxhp / 2))
-        //{
-        //    goatAnimator.SetBool("attack", true);
+        //if( !isFireBallStart && BossHealthBar.Self.Curhp > (float)( BossHealthBar.Self.Maxhp / 2 ) ) {
+        //    goatAnimator.SetBool( "attack", true );
 
         //    isFireBallStart = true;
 
-        //    StartCoroutine("callFireBall");
+        //    StartCoroutine( "callFireBall" );
         //}
+
+        if( !isFireBallStart ) {
+            goatAnimator.SetBool( "attack", true );
+
+            isFireBallStart = true;
+
+            StartCoroutine( "callFireBall" );
+        }
     }
 
     public void RandomLaser()
